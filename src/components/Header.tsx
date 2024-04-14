@@ -1,4 +1,4 @@
-import React, { , useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // import icons
 import { BsBag } from "react-icons/bs";
@@ -7,11 +7,17 @@ import { Link } from "react-router-dom";
 // import logo
 import Logo from "../assets/logo.svg";
 
+import { useDispatch, useSelector } from "react-redux";
+import { selectItemAmount } from "../lib/features/cartItemsSlice";
+import { toggleSidebar } from "../lib/features/sidebarSlice";
+
 const Header = () => {
   // header state
   const [isActive, setIsActive] = useState<boolean>(false);
-  const { isOpen, setIsOpen } = useState<boolean>(false);
-  const { itemAmount } = getSelector();
+
+  const dispatch = useDispatch();
+  const itemAmount = useSelector(selectItemAmount);
+
   // event listener
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -33,7 +39,7 @@ const Header = () => {
         </Link>
         {/* cart */}
         <div
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => dispatch(toggleSidebar())}
           className="cursor-pointer flex relative"
         >
           <BsBag className="text-2xl" />

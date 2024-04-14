@@ -1,5 +1,6 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import { useSelector } from "react-redux";
 
 const cartAdapter = createEntityAdapter();
 
@@ -48,5 +49,27 @@ export const {
   selectById: selectCartItemsById,
   selectIds: selectCartItemsIds,
 } = cartAdapter.getSelectors((state: RootState) => state.cartItems);
+
+export const selectItemAmount = (state: RootState) => {
+  const cartItems = selectAllCartItems(state);
+  return cartItems.reduce((acc, cartItem) => {
+    return acc + cartItem.amount;
+  }, 0);
+};
+
+export const selectTotal = (state: RootState) => {
+  const cartItems = selectAllCartItems(state);
+  return cartItems.reduce((acc, cartItem) => {
+    return acc + cartItem.amount * cartItem.price;
+  }, 0);
+};
+
+export const {
+  addToCart,
+  removeFromCart,
+  clearCart,
+  increaseAmount,
+  decreaseAmount,
+} = cartItemsSlice.actions;
 
 export default cartItemsSlice.reducer;
