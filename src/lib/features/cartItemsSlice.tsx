@@ -1,11 +1,12 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 const cartAdapter = createEntityAdapter();
 
 const initialState = cartAdapter.getInitialState();
 
-const cartSlice = createSlice({
-  name: "cart",
+const cartItemsSlice = createSlice({
+  name: "cartItems",
   initialState,
   reducers: {
     addToCart(state, action) {
@@ -42,4 +43,10 @@ const cartSlice = createSlice({
   },
 });
 
-export default cartSlice.reducer;
+export const {
+  selectAll: selectAllCartItems,
+  selectById: selectCartItemsById,
+  selectIds: selectCartItemsIds,
+} = cartAdapter.getSelectors((state: RootState) => state.cartItems);
+
+export default cartItemsSlice.reducer;
