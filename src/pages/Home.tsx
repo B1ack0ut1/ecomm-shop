@@ -3,16 +3,13 @@ import Hero from "../components/Hero";
 import { useGetProductsQuery } from "../lib/features/productsSlice";
 import { selectAllProducts } from "../lib/features/productsSlice";
 import { useSelector } from "react-redux";
+import SkeletonHome from "../components/skeletons/skeletonHome";
+
 const Home = () => {
   const { isLoading, isError } = useGetProductsQuery();
   const menAndWomenProducts = useSelector(selectAllProducts);
 
-  if (isLoading)
-    return (
-      <section className="h-screen flex justify-center items-center">
-        Loading...
-      </section>
-    );
+  if (isLoading) return <SkeletonHome />;
   if (isError)
     return (
       <section className="h-screen flex justify-center items-center">
