@@ -1,9 +1,4 @@
 import { useParams } from "react-router-dom";
-// import cart context
-import { CartContext } from "../contexts/CartContext";
-// import product context
-import { ProductContext } from "../contexts/ProductContext";
-
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectProductById,
@@ -58,7 +53,7 @@ const ProductDetails = () => {
             <div className="text-xl text-red-500 font-medium mb-6">{price}</div>
             <p className="mb-8 max-w-[70%] xl:max-w-[550px]">{description}</p>
             <button
-              onClick={() => dispatch(addToCart({ product, id }))}
+              onClick={() => dispatch(addToCart({ product, id: Number(id) }))}
               className="bg-primary py-4 px-8 text-white"
             >
               Add to cart

@@ -1,6 +1,5 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { useSelector } from "react-redux";
 // Type
 import { ProductType } from "./productsSlice";
 

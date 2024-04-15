@@ -6,8 +6,10 @@ import {
   increaseAmount,
   decreaseAmount,
 } from "../lib/features/cartItemsSlice";
+// Types
+import { CartItemType } from "../lib/features/cartItemsSlice";
 
-const CartItem = ({ cartItem }) => {
+const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
   const dispatch = useDispatch();
 
   const { id, title, image, price, amount } = cartItem;
@@ -65,8 +67,8 @@ const CartItem = ({ cartItem }) => {
             </div>
             {/* final price */}
             {/* make the price at 2 decimals */}
-            <div className="flex-1 flex justify-end items-center text-primary font-medium">{`$ ${parseFloat(
-              price * amount
+            <div className="flex-1 flex justify-end items-center text-primary font-medium">{`$ ${(
+              Number(price) * amount
             ).toFixed(2)}`}</div>
           </div>
         </div>
