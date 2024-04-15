@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
-
-// import icons
-import { BsBag } from "react-icons/bs";
-// import link
 import { Link } from "react-router-dom";
-// import logo
+import { BsBag } from "react-icons/bs";
 import Logo from "../assets/logo.svg";
-
 import { useDispatch, useSelector } from "react-redux";
 import { selectItemAmount } from "../lib/features/cartItemsSlice";
 import { toggleSidebar } from "../lib/features/sidebarSlice";

@@ -1,8 +1,18 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { useSelector } from "react-redux";
+// Type
+import { ProductType } from "./productsSlice";
 
-const cartAdapter = createEntityAdapter();
+export type CartItemType = ProductType & { amount: number };
+
+type ActionPayload = {
+  id: number;
+};
+
+type AddToCartPayload = ActionPayload & { product: ProductType };
+
+const cartAdapter = createEntityAdapter<CartItemType>();
 
 const initialState = cartAdapter.getInitialState();
 
@@ -10,7 +20,7 @@ const cartItemsSlice = createSlice({
   name: "cartItems",
   initialState,
   reducers: {
-    addToCart(state, action) {
+    addToCart(state, action: { payload: AddToCartPayload }) {
       const { product, id } = action.payload;
       const cartItem = state.entities[id];
       if (cartItem) {
@@ -20,19 +30,19 @@ const cartItemsSlice = createSlice({
         cartAdapter.addOne(state, newItem);
       }
     },
-    removeFromCart(state, action) {
+    removeFromCart(state, action: { payload: ActionPayload }) {
       const { id } = action.payload;
       cartAdapter.removeOne(state, id);
     },
-    clearCart(state, action) {
+    clearCart(state) {
       cartAdapter.removeAll(state);
     },
-    increaseAmount(state, action) {
+    increaseAmount(state, action: { payload: ActionPayload }) {
       const { id } = action.payload;
       const cartItem = state.entities[id];
       cartItem.amount++;
     },
-    decreaseAmount(state, action) {
+    decreaseAmount(state, action: { payload: ActionPayload }) {
       const { id } = action.payload;
       const cartItem = state.entities[id];
       if (cartItem.amount < 2) {
@@ -60,7 +70,7 @@ export const selectItemAmount = (state: RootState) => {
 export const selectTotal = (state: RootState) => {
   const cartItems = selectAllCartItems(state);
   return cartItems.reduce((acc, cartItem) => {
-    return acc + cartItem.amount * cartItem.price;
+    return acc + cartItem.amount * Number(cartItem.price);
   }, 0);
 };
 

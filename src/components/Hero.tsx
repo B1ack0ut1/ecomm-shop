@@ -1,6 +1,4 @@
-// import images
 import WomanImg from "../assets/woman_hero.png";
-// import link
 import { Link } from "react-router-dom";
 
 const Hero = () => {

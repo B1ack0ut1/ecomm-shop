@@ -1,9 +1,5 @@
-import React, { useContext } from "react";
-// import link
 import { Link } from "react-router-dom";
-// import icons
 import { IoMdClose, IoMdAdd, IoMdRemove } from "react-icons/io";
-
 import { useDispatch } from "react-redux";
 import {
   removeFromCart,
@@ -11,11 +7,10 @@ import {
   decreaseAmount,
 } from "../lib/features/cartItemsSlice";
 
-const CartItem = ({ item }) => {
+const CartItem = ({ cartItem }) => {
   const dispatch = useDispatch();
 
-  // destructure item
-  const { id, title, image, price, amount } = item;
+  const { id, title, image, price, amount } = cartItem;
 
   return (
     <div className="flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full">
@@ -70,7 +65,7 @@ const CartItem = ({ item }) => {
             </div>
             {/* final price */}
             {/* make the price at 2 decimals */}
-            <div className="flex-1 flex justify-end items-center text-primary font-medium">{`$ ${(
+            <div className="flex-1 flex justify-end items-center text-primary font-medium">{`$ ${parseFloat(
               price * amount
             ).toFixed(2)}`}</div>
           </div>

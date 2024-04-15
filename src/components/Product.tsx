@@ -1,16 +1,12 @@
-import { useContext } from "react";
-// import link
 import { Link } from "react-router-dom";
-// import icons
 import { BsPlus, BsEyeFill } from "react-icons/bs";
-
 import { useDispatch } from "react-redux";
 import { addToCart } from "../lib/features/cartItemsSlice";
+import { ProductType } from "../lib/features/productsSlice";
 
-const Product = ({ product }) => {
+const Product = ({ product }: { product: ProductType }) => {
   const dispatch = useDispatch();
 
-  // destructure product
   const { id, image, category, title, price } = product;
 
   return (

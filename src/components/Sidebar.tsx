@@ -1,9 +1,6 @@
-// import link
 import { Link } from "react-router-dom";
-// import icons
 import { IoMdArrowForward } from "react-icons/io";
 import { FiTrash2 } from "react-icons/fi";
-
 import { useDispatch, useSelector } from "react-redux";
 import { selectSidebarIsOpen } from "../lib/features/sidebarSlice";
 import { closeSidebar } from "../lib/features/sidebarSlice";
@@ -49,7 +46,8 @@ const Sidebar = () => {
         <div className="flex w-full justify-between items-center ">
           {/* total */}
           <div className="uppercase font-semibold">
-            <span className="mr-2">Total: </span>$ {total.toFixed(2)}
+            <span className="mr-2">Total: </span>${" "}
+            {parseFloat(total).toFixed(2)}
           </div>
           {/* clear cart icon */}
           <div
