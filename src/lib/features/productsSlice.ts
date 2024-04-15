@@ -1,4 +1,4 @@
-import { createEntityAdapter } from "@reduxjs/toolkit";
+import { createEntityAdapter, createSelector } from "@reduxjs/toolkit";
 import { apiSlice } from "./api/apiSlice";
 import { RootState } from "../store";
 
@@ -49,7 +49,19 @@ const productsApiSlice = apiSlice.injectEndpoints({
 
 export const { useGetProductsQuery } = productsApiSlice;
 
+export const selectProductsResult =
+  productsApiSlice.endpoints.getProducts.select();
+
+const selectProductsData = createSelector(
+  selectProductsResult,
+  (productsResult) => {
+    return productsResult?.data; // Normalized state object with ids & entities
+  }
+);
+
 export const { selectAll: selectAllProducts, selectById: selectProductById } =
-  productsAdapter.getSelectors((state: RootState) => state.cartItems);
+  productsAdapter.getSelectors(
+    (state: RootState) => selectProductsData(state) ?? initialState
+  );
 
 export default productsApiSlice.reducer;
