@@ -31,12 +31,13 @@ const Sidebar = () => {
           Shopping Bag ({itemAmount})
         </div>
         {/* icon */}
-        <div
+        <button
           onClick={() => dispatch(closeSidebar())}
           className="cursor-pointer h-8 w-8 flex justify-center items-center"
+          aria-label="Close shopping bag sidebar"
         >
           <IoMdArrowForward className="text-2xl" />
-        </div>
+        </button>
       </div>
       <div className="flex flex-col gap-y-2 h-[320px] lg:h-[440px] overflow-y-auto overflow-x-hidden border-b">
         {cart.map((cartItem) => {
@@ -50,21 +51,24 @@ const Sidebar = () => {
             <span className="mr-2">Total: </span>$ {total.toFixed(2)}
           </div>
           {/* clear cart icon */}
-          <div
+          <button
             onClick={() => dispatch(clearCart())}
             className="cursor-pointer py-4 bg-red-500 text-white w-12 h-12 flex justify-center items-center text-xl"
+            aria-label="Clear shopping cart"
           >
             <FiTrash2 />
-          </div>
+          </button>
         </div>
         <Link
           to={"/"}
+          aria-label="Direct to homepage"
           className="bg-gray-200 flex p-4 justify-center items-center text-primary w-full font-medium"
         >
           View cart
         </Link>
         <Link
           to={"/"}
+          aria-label="Direct to homepage"
           className="bg-black flex p-4 justify-center items-center text-white w-full font-medium"
         >
           Checkout

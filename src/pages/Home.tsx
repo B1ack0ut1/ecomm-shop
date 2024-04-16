@@ -9,12 +9,13 @@ const Home = () => {
   const { isLoading, isError } = useGetProductsQuery();
   const menAndWomenProducts = useSelector(selectAllProducts);
 
+  // Rtk query doesn't yet support Suspense and Errorboundary
   if (isLoading) return <SkeletonHome />;
   if (isError)
     return (
-      <section className="h-screen flex justify-center items-center">
+      <p className="h-screen flex justify-center items-center">
         An error has occurred.
-      </section>
+      </p>
     );
 
   return (

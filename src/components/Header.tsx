@@ -27,21 +27,22 @@ const Header = () => {
     >
       <div className="container mx-auto flex items-center justify-between h-full">
         {/* logo */}
-        <Link to={"/"}>
+        <Link to={"/"} aria-label="Direct to homepage">
           <div>
-            <img className="w-[40px]" src={Logo} alt="" />
+            <img className="w-[40px]" src={Logo} alt="Logo" />
           </div>
         </Link>
         {/* cart */}
-        <div
+        <button
           onClick={() => dispatch(toggleSidebar())}
           className="cursor-pointer flex relative"
+          aria-label="Toggle shopping bag sidebar"
         >
           <BsBag className="text-2xl" />
           <div className="bg-red-500 absolute -right-2 -bottom-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center">
             {itemAmount}
           </div>
-        </div>
+        </button>
       </div>
     </header>
   );

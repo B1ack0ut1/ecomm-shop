@@ -43,7 +43,11 @@ const ProductDetails = () => {
         <div className="flex flex-col lg:flex-row items-center">
           {/* image */}
           <div className="flex flex-1 justify-center items-center mb-8 lg:mb-0">
-            <img className="max-w-[200px] lg:max-w-sm " src={image} alt="" />
+            <img
+              className="max-w-[200px] lg:max-w-sm "
+              src={image}
+              alt={title}
+            />
           </div>
           {/* text */}
           <div className="flex-1 text-center lg:text-left">
