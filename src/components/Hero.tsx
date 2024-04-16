@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <section className="h-[800px] bg-hero bg-cover bg-center py-24">
+    <section className="h-[800px] bg-hero bg-cover bg-center">
       <div className="container mx-auto flex justify-around h-full">
         {/* text */}
         <div className="flex flex-col justify-center">
@@ -17,14 +17,15 @@ const Hero = () => {
           </h1>
           <Link
             to={"/"}
+            aria-label="Direct to homepage"
             className="self-start uppercase font-semibold border-b-2 border-primary"
           >
             Discover More
           </Link>
         </div>
         {/* image */}
-        <div className="hidden lg:block">
-          <img src={WomanImg} alt="" />
+        <div className="hidden lg:block self-end">
+          <img src={WomanImg} width="279" height="700" alt="Female model" />
         </div>
       </div>
     </section>
