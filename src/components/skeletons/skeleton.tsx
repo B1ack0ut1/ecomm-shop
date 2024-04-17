@@ -1,8 +1,6 @@
 import "./skeletons.css";
 
-const Skeleton = ({ classes }: { classes: string }) => {
-  const classNames = `skeleton ${classes} animate-pulse`;
-
-  return <div className={classNames}></div>;
+const Skeleton = ({ className }: { className: string }) => {
+  return <div className={`skeleton animate-pulse ${className}`}></div>;
 };
 export default Skeleton;

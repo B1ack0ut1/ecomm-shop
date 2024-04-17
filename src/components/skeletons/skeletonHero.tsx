@@ -1,4 +1,4 @@
-import Skeleton from "./skeleton";
+import Skeleton from "./Skeleton";
 
 const SkeletonHero = () => {
   return (
@@ -8,16 +8,16 @@ const SkeletonHero = () => {
         <div className="flex flex-col justify-center">
           {/* pretitle */}
           {/* Text: NEW TREND */}
-          <Skeleton classes="text w-[150px]" />
+          <Skeleton className="text w-[150px]" />
           {/* Text: AUTUMN SALE STYLISH */}
-          <Skeleton classes="w-[700px] h-[75px]" />
+          <Skeleton className="w-[700px] h-[75px]" />
           {/* Text: WOMENS */}
-          <Skeleton classes="w-[325px] h-[75px] mb-4" />
+          <Skeleton className="w-[325px] h-[75px] mb-4" />
           {/* Text: DISCOVER MORE */}
-          <Skeleton classes="text self-start w-[135px]" />
+          <Skeleton className="text self-start w-[135px]" />
         </div>
         {/* image not necessary to display*/}
-        <Skeleton classes="w-[285px] invisible" />
+        <Skeleton className="w-[285px] invisible" />
       </div>
     </section>
   );

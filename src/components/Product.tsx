@@ -3,7 +3,7 @@ import { BsPlus, BsEyeFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../lib/features/cartItemsSlice";
 import { ProductType } from "../lib/features/productsSlice";
-import Skeleton from "./skeletons/skeleton";
+import Skeleton from "./skeletons/Skeleton";
 import { useState } from "react";
 
 const Product = ({ product }: { product: ProductType }) => {
@@ -22,7 +22,7 @@ const Product = ({ product }: { product: ProductType }) => {
           {/* image */}
           <div className="w-[200px] mx-auto flex justify-center items-center">
             <Skeleton
-              classes={`${
+              className={`${
                 isLoaded ? "hidden" : ""
               } w-[130px] h-[160px] bg-[rgb(199_199_199)] group-hover:scale-110 transition duration-300`}
             />
