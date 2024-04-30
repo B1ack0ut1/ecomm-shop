@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <section className="h-[800px] bg-hero bg-cover bg-center">
+    <section
+      className="h-[800px] bg-hero bg-cover bg-center"
+      data-testid="hero"
+    >
       <div className="container mx-auto flex justify-around h-full">
         {/* text */}
         <div className="flex flex-col justify-center">

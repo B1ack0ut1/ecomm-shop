@@ -8,9 +8,10 @@ import {
 } from "../lib/features/cartItemsSlice";
 // Types
 import { CartItemType } from "../lib/features/cartItemsSlice";
+import { AppDispatch } from "../lib/store";
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const { id, title, image, price, amount } = cartItem;
 

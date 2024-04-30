@@ -12,8 +12,11 @@ import {
 } from "../lib/features/cartItemsSlice";
 import CartItem from "./CartItem";
 
+// Types
+import { AppDispatch } from "../lib/store";
+
 const Sidebar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const isOpenSidebar = useSelector(selectSidebarIsOpen);
 
   const cart = useSelector(selectAllCartItems);

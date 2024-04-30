@@ -5,12 +5,13 @@ import Logo from "../assets/logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { selectItemAmount } from "../lib/features/cartItemsSlice";
 import { toggleSidebar } from "../lib/features/sidebarSlice";
+import { AppDispatch } from "../lib/store";
 
 const Header = () => {
   // header state
   const [isActive, setIsActive] = useState<boolean>(false);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const itemAmount = useSelector(selectItemAmount);
 
   // event listener

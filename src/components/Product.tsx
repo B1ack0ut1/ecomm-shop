@@ -2,13 +2,16 @@ import { Link } from "react-router-dom";
 import { BsPlus, BsEyeFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../lib/features/cartItemsSlice";
-import { ProductType } from "../lib/features/productsSlice";
 import Skeleton from "./skeletons/Skeleton";
 import { useState } from "react";
 
+// Types
+import { ProductType } from "../lib/features/productsSlice";
+import { AppDispatch } from "../lib/store";
+
 const Product = ({ product }: { product: ProductType }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const { id, image, category, title, price } = product;
 

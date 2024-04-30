@@ -1,5 +1,3 @@
-import "./skeletons.css";
-
 const Skeleton = ({ className }: { className: string }) => {
   return <div className={`skeleton animate-pulse ${className}`}></div>;
 };

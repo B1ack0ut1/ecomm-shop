@@ -3,7 +3,7 @@ import Hero from "../components/Hero";
 import { useGetProductsQuery } from "../lib/features/productsSlice";
 import { selectAllProducts } from "../lib/features/productsSlice";
 import { useSelector } from "react-redux";
-import SkeletonHome from "../components/skeletons/skeletonHome";
+import SkeletonHome from "../components/skeletons/SkeletonHome";
 
 const Home = () => {
   const { isLoading, isError } = useGetProductsQuery();
@@ -19,9 +19,10 @@ const Home = () => {
     );
 
   return (
-    <div>
+    <div data-testid="home">
       <Hero />
       <section className="py-16">
+        <div className="hidden"></div>
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[30px] max-w-sm mx-auto md:max-w-none md:mx-0">
             {menAndWomenProducts.map((product) => {
