@@ -8,8 +8,30 @@
   }
 }
 
+@layer components {
+  .autumn-sign-in-button {
+    background-color: #f9f0eb;
+    border: 0.2rem solid #cfc2bd;
+    padding: 0.25em 0.5em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.25rem;
+    /* border-radius: 0.25rem; */
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .autumn-sign-in-button:hover {
+    background-color: #cfc2bd;
+    color: #faf0e6;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
 @layer utilities {
-  skeleton {
+  .skeleton {
     @apply bg-[rgb(199_199_199)] mx-3 rounded-[0.25rem];
   }
 }

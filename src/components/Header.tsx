@@ -6,6 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectItemAmount } from "../lib/features/cartItemsSlice";
 import { toggleSidebar } from "../lib/features/sidebarSlice";
 import { AppDispatch } from "../lib/store";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/clerk-react";
 
 const Header = () => {
   // header state
@@ -33,17 +39,31 @@ const Header = () => {
             <img className="w-[40px]" src={Logo} alt="Logo" />
           </div>
         </Link>
-        {/* cart */}
-        <button
-          onClick={() => dispatch(toggleSidebar())}
-          className="cursor-pointer flex relative"
-          aria-label="Toggle shopping bag sidebar"
-        >
-          <BsBag className="text-2xl" />
-          <div className="bg-red-500 absolute -right-2 -bottom-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center">
-            {itemAmount}
+        <div className="flex justify-end items-center">
+          {/* cart */}
+          <div className="mr-8">
+            <button
+              onClick={() => dispatch(toggleSidebar())}
+              className="cursor-pointer flex relative"
+              aria-label="Toggle shopping bag sidebar"
+            >
+              <BsBag className="text-2xl" />
+              <div className="bg-red-500 absolute -right-2 -bottom-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center">
+                {itemAmount}
+              </div>
+            </button>
           </div>
-        </button>
+          <div>
+            <SignedOut>
+              <SignInButton>
+                <button className="autumn-sign-in-button">Sign In</button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </div>
+        </div>
       </div>
     </header>
   );

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import { IoMdArrowForward } from "react-icons/io";
 import { FiTrash2 } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +14,8 @@ import CartItem from "./CartItem";
 
 // Types
 import { AppDispatch } from "../lib/store";
+import { loadStripe } from "@stripe/stripe-js";
+import { useUser } from "@clerk/clerk-react";
 
 const Sidebar = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,6 +24,49 @@ const Sidebar = () => {
   const cart = useSelector(selectAllCartItems);
   const total = useSelector(selectTotal);
   const itemAmount = useSelector(selectItemAmount);
+
+  const user = useUser();
+
+  const makePayment = async () => {
+    // if (!user.isSignedIn) {
+    //   redirect("/sign-in");
+    // }
+
+    const stripe = await loadStripe(
+      import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
+    );
+
+    const body = {
+      products: cart,
+    };
+
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    const response = await fetch(
+      `http://localhost:3001/create-checkout-session`,
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
+      }
+    );
+    console.log(response);
+    const session = await response.json();
+    console.log(session);
+    if (stripe) {
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+
+      if (result.error) {
+        console.log(result.error);
+      } else {
+        console.log("Stripe failed to initialize.");
+      }
+    }
+  };
 
   return (
     <div
@@ -69,13 +114,12 @@ const Sidebar = () => {
         >
           View cart
         </Link>
-        <Link
-          to={"/"}
-          aria-label="Direct to homepage"
+        <button
+          onClick={makePayment}
           className="bg-black flex p-4 justify-center items-center text-white w-full font-medium"
         >
           Checkout
-        </Link>
+        </button>
       </div>
     </div>
   );
