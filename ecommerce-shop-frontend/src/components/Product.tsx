@@ -8,6 +8,7 @@ import { useState } from "react";
 // Types
 import { ProductType } from "../lib/features/productsSlice";
 import { AppDispatch } from "../lib/store";
+import { closeSidebar } from "../lib/features/sidebarSlice";
 
 const Product = ({ product }: { product: ProductType }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -51,6 +52,7 @@ const Product = ({ product }: { product: ProductType }) => {
           </button>
           <Link
             to={`/product/${id}`}
+            onClick={() => dispatch(closeSidebar())}
             className="flex w-12 h-12 bg-white justify-center items-center text-primary drop-shadow-xl"
             aria-label="Learn more details about the product"
           >

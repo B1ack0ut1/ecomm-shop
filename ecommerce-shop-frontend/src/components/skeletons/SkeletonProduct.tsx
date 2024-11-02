@@ -12,11 +12,13 @@ const SkeletonProduct = () => {
         </div>
       </div>
       {/* category & title & price */}
-      <Skeleton className="text w-[150px]" />
-      {/* Multiple skeleton lines for product name */}
-      <Skeleton className="text w-[230px]" />
-      <Skeleton className="text w-[230px]" />
-      <Skeleton className="text w-[50px]" />
+      <div className="flex flex-col   gap-y-2">
+        <Skeleton className="h-[15px] w-[150px]" />
+        {/* Multiple skeleton lines for product name */}
+        <Skeleton className="h-[15px] w-[230px]" />
+        <Skeleton className="h-[15px] w-[230px]" />
+        <Skeleton className="h-[15px] w-[50px]" />
+      </div>
     </div>
   );
 };

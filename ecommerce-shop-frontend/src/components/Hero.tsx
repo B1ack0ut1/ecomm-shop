@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <section
-      className="h-[800px] bg-hero bg-cover bg-center"
+      className="h-[450px] md:h-[650px] lg:h-[800px] max-w-[1920px] mx-auto bg-cover bg-right md:bg-center bg-hero"
       data-testid="hero"
     >
       <div className="container mx-auto flex justify-around h-full">

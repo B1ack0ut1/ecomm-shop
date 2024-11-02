@@ -1,4 +1,4 @@
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMdArrowForward } from "react-icons/io";
 import { FiTrash2 } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +14,6 @@ import CartItem from "./CartItem";
 
 // Types
 import { AppDispatch } from "../lib/store";
-import { loadStripe } from "@stripe/stripe-js";
 import { useUser } from "@clerk/clerk-react";
 
 const Sidebar = () => {
@@ -25,46 +24,15 @@ const Sidebar = () => {
   const total = useSelector(selectTotal);
   const itemAmount = useSelector(selectItemAmount);
 
-  const user = useUser();
+  const { user, isSignedIn } = useUser();
+  const navigate = useNavigate();
 
-  const makePayment = async () => {
-    // if (!user.isSignedIn) {
-    //   redirect("/sign-in");
-    // }
-
-    const stripe = await loadStripe(
-      import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
-    );
-
-    const body = {
-      products: cart,
-    };
-
-    const headers = {
-      "Content-Type": "application/json",
-    };
-
-    const response = await fetch(
-      `http://localhost:3001/create-checkout-session`,
-      {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(body),
-      }
-    );
-    console.log(response);
-    const session = await response.json();
-    console.log(session);
-    if (stripe) {
-      const result = await stripe.redirectToCheckout({
-        sessionId: session.id,
-      });
-
-      if (result.error) {
-        console.log(result.error);
-      } else {
-        console.log("Stripe failed to initialize.");
-      }
+  const handleCheckout = async () => {
+    dispatch(closeSidebar());
+    if (!isSignedIn) {
+      navigate("/sign-in?redirect=/checkout");
+    } else {
+      navigate("/checkout");
     }
   };
 
@@ -108,17 +76,17 @@ const Sidebar = () => {
           </button>
         </div>
         <Link
-          to={"/"}
+          to={"/cart-view"}
           aria-label="Direct to homepage"
           className="bg-gray-200 flex p-4 justify-center items-center text-primary w-full font-medium"
         >
           View cart
         </Link>
         <button
-          onClick={makePayment}
+          onClick={handleCheckout}
           className="bg-black flex p-4 justify-center items-center text-white w-full font-medium"
         >
-          Checkout
+          {user ? "Proceed to Checkout" : "Login to Checkout"}
         </button>
       </div>
     </div>

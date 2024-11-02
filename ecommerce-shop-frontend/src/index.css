@@ -11,13 +11,12 @@
 @layer components {
   .autumn-sign-in-button {
     background-color: #f9f0eb;
-    border: 0.2rem solid #cfc2bd;
+    border: 0.15rem solid #cfc2bd;
     padding: 0.25em 0.5em;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 1.25rem;
-    /* border-radius: 0.25rem; */
     cursor: pointer;
     text-transform: uppercase;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -32,6 +31,6 @@
 
 @layer utilities {
   .skeleton {
-    @apply bg-[rgb(199_199_199)] mx-3 rounded-[0.25rem];
+    @apply bg-[rgb(199_199_199)];
   }
 }

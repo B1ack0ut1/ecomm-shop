@@ -13,7 +13,21 @@ type AddToCartPayload = ActionPayload & { product: ProductType };
 
 const cartAdapter = createEntityAdapter<CartItemType>();
 
-const initialState = cartAdapter.getInitialState();
+const loadCartFromLocalStorage = () => {
+  try {
+    const serializedState = localStorage.getItem("cartItems");
+    if (serializedState === null) return cartAdapter.getInitialState();
+    return cartAdapter.setAll(
+      cartAdapter.getInitialState(),
+      JSON.parse(serializedState)
+    );
+  } catch (e) {
+    console.warn("Failed to load cart items from local storage", e);
+    return cartAdapter.getInitialState();
+  }
+};
+
+const initialState = loadCartFromLocalStorage();
 
 const cartItemsSlice = createSlice({
   name: "cartItems",
